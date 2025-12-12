@@ -18,7 +18,7 @@ export default function BalanceCard() {
   const formattedBalance = formatTokenAmount(balance);
 
   return (
-    <div className="bg-gradient-to-br from-pink-600 via-fuchsia-600 to-purple-600 rounded-3xl p-10 text-white shadow-2xl glow-primary border-2 border-pink-400/40 relative overflow-hidden">
+    <div className="bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 rounded-3xl p-10 text-white shadow-2xl glow-primary border-2 border-blue-400/40 relative overflow-hidden">
       {/* Animated background pattern */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.1),transparent_50%)]" />
@@ -52,8 +52,8 @@ export default function BalanceCard() {
           )}
         </div>
         <div className="flex items-center justify-between pt-6 border-t border-white/30">
-          <span className="text-white/90 text-sm font-semibold uppercase tracking-widest" style={{ fontFamily: 'var(--font-kanit)' }}>LUME</span>
-          <span className="text-sm bg-white/20 backdrop-blur-md px-5 py-2 rounded-full font-semibold border-2 border-white/30 text-white shadow-lg" style={{ fontFamily: 'var(--font-kanit)' }}>
+          <span className="text-white/90 text-sm font-semibold uppercase tracking-widest" style={{ fontFamily: 'var(--font-titillium)' }}>LUME</span>
+          <span className="text-sm bg-white/20 backdrop-blur-md px-5 py-2 rounded-full font-semibold border-2 border-white/30 text-white shadow-lg" style={{ fontFamily: 'var(--font-titillium)' }}>
             Lumera Mainnet
           </span>
         </div>

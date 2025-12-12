@@ -15,14 +15,14 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg glow-primary border-2 border-pink-400/40">
-            <span className="text-white font-bold text-xl" style={{ fontFamily: 'var(--font-kanit)' }}>P</span>
+            <span className="text-white font-bold text-xl" style={{ fontFamily: 'var(--font-kanit)' }}>F</span>
           </div>
           <div className="hidden sm:block">
             <h1 className="text-xl font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-kanit)' }}>
-              Pulse
+              Flux
             </h1>
             <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider">
-              Staking & Governance
+              Fluid DeFi Experience
             </p>
           </div>
         </div>
@@ -30,9 +30,9 @@ export default function Header() {
         <div className="flex items-center gap-3">
           {isConnected ? (
             <>
-              <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-pink-500/10 border-2 border-pink-400/40 rounded-xl backdrop-blur-md shadow-lg">
-                <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse shadow-sm glow-primary"></div>
-                <span className="text-sm font-mono text-pink-300 font-semibold">
+              <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-blue-500/10 border-2 border-blue-400/40 rounded-xl backdrop-blur-md shadow-lg">
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse shadow-sm glow-primary"></div>
+                <span className="text-sm font-mono text-blue-300 font-semibold">
                   {formatAddress(address!)}
                 </span>
               </div>
@@ -48,8 +48,8 @@ export default function Header() {
             <button
               onClick={connect}
               disabled={isLoading}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-600 to-fuchsia-600 hover:from-pink-700 hover:to-fuchsia-700 text-white rounded-xl transition-all duration-200 font-semibold text-sm shadow-lg glow-primary hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border-2 border-pink-400/40"
-              style={{ fontFamily: 'var(--font-kanit)' }}
+              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white rounded-xl transition-all duration-200 font-semibold text-sm shadow-lg glow-primary hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border-2 border-blue-400/40"
+              style={{ fontFamily: 'var(--font-titillium)' }}
             >
               <Wallet size={18} />
               {isLoading ? "Connecting..." : "Connect Keplr"}

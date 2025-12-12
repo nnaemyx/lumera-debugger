@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Kanit, Work_Sans, Geist_Mono } from "next/font/google";
+import { Titillium_Web, Open_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const kanit = Kanit({
-  variable: "--font-kanit",
+const titilliumWeb = Titillium_Web({
+  variable: "--font-titillium",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700", "900"],
 });
 
-const workSans = Work_Sans({
-  variable: "--font-work-sans",
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -23,9 +23,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pulse - Dynamic DeFi Platform",
+  title: "Flux - Fluid DeFi Experience",
   description:
-    "Feel the pulse of decentralized finance. A dynamic platform for staking, governance, and token management on the Cosmos ecosystem. Experience the power of DeFi.",
+    "Flow with the flux of decentralized finance. A fluid platform for staking, governance, and token management on the Cosmos ecosystem. Experience seamless DeFi.",
 };
 
 export default function RootLayout({
@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${kanit.variable} ${workSans.variable} ${geistMono.variable} antialiased`}
+        className={`${titilliumWeb.variable} ${openSans.variable} ${geistMono.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>
