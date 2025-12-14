@@ -1,44 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0e1a;
-  --foreground: #f8fafc;
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
-  --accent: #60a5fa;
-  --accent-dark: #3b82f6;
-  --secondary: #93c5fd;
-  --secondary-dark: #60a5fa;
-  --tertiary: #6366f1;
-  --tertiary-dark: #4f46e5;
-  --surface: #111827;
-  --surface-elevated: #1e293b;
-  --border: #334155;
-  --border-light: #475569;
+  --background: #1a0f0f;
+  --foreground: #fef3e2;
+  --primary: #f59e0b;
+  --primary-dark: #d97706;
+  --accent: #fbbf24;
+  --accent-dark: #f59e0b;
+  --secondary: #fcd34d;
+  --secondary-dark: #fbbf24;
+  --tertiary: #f97316;
+  --tertiary-dark: #ea580c;
+  --surface: #2a1f1f;
+  --surface-elevated: #3a2f2f;
+  --border: #4a3f3f;
+  --border-light: #5a4f4f;
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
-  --heatmap-0: #1e293b;
-  --heatmap-1: #1e3a8a;
-  --heatmap-2: #1e40af;
-  --heatmap-3: #2563eb;
-  --heatmap-4: #3b82f6;
-  --heatmap-5: #60a5fa;
+  --note-yellow: #fef3c7;
+  --note-orange: #fed7aa;
+  --note-amber: #fde68a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-space-grotesk);
-  --font-mono: var(--font-source-code-pro);
+  --font-sans: var(--font-work-sans);
+  --font-heading: var(--font-poppins);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
-  background: linear-gradient(135deg, #0a0e1a 0%, #111827 50%, #0a0e1a 100%);
+  background: linear-gradient(135deg, #1a0f0f 0%, #2a1f1f 50%, #1a0f0f 100%);
   background-attachment: fixed;
   color: var(--foreground);
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family: var(--font-work-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -66,11 +63,11 @@ body {
 
 /* Glow effects */
 .glow-primary {
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.7), 0 0 60px rgba(59, 130, 246, 0.5), 0 0 90px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.7), 0 0 60px rgba(245, 158, 11, 0.5), 0 0 90px rgba(245, 158, 11, 0.3);
 }
 
 .glow-accent {
-  box-shadow: 0 0 30px rgba(96, 165, 250, 0.7), 0 0 60px rgba(96, 165, 250, 0.5), 0 0 90px rgba(96, 165, 250, 0.3);
+  box-shadow: 0 0 30px rgba(251, 191, 36, 0.7), 0 0 60px rgba(251, 191, 36, 0.5), 0 0 90px rgba(251, 191, 36, 0.3);
 }
 
 .glow-success {

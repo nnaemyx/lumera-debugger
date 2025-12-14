@@ -1,33 +1,32 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, Source_Code_Pro } from "next/font/google";
+import {  Poppins, Work_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const workSans = Work_Sans({
+  variable: "--font-work-sans",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const sourceCodePro = Source_Code_Pro({
-  variable: "--font-source-code-pro",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "ActivityMap - Wallet Activity Heatmap",
+  title: "Wallet Notes",
   description:
-    "Visualize wallet transaction activity with a GitHub-style heatmap calendar. See your transaction patterns and activity intensity over time on Lumera Testnet.",
+    "Save personal notes tied to wallet addresses. Organize your thoughts, reminders, and information for each wallet address on Lumera Testnet.",
 };
 
 export default function RootLayout({
@@ -38,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${sourceCodePro.variable} antialiased`}
+        className={`${poppins.variable} ${workSans.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>
