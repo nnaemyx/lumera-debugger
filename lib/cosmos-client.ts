@@ -573,3 +573,92 @@ export const getLatestBlockHeight = async (): Promise<number> => {
   }
 };
 
+export interface TransactionDetails {
+  hash: string;
+  height: string;
+  code: number;
+  codespace?: string;
+  gasUsed: string;
+  gasWanted: string;
+  timestamp: string;
+  rawLog: string;
+  logs: any[];
+  events: any[];
+  messages: any[];
+  memo?: string;
+  fee?: {
+    amount: string;
+    denom: string;
+  };
+}
+
+export const getTransactionByHash = async (txHash: string): Promise<TransactionDetails | null> => {
+  try {
+    const response = await fetch(`${LUMERA_CONFIG.rest}/cosmos/tx/v1beta1/txs/${txHash}`);
+    
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error("Transaction not found");
+      }
+      throw new Error(`Failed to fetch transaction: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    const txResponse = data.tx_response || data;
+    
+    if (!txResponse) {
+      throw new Error("Invalid transaction response");
+    }
+
+    // Parse logs
+    let logs: any[] = [];
+    try {
+      logs = JSON.parse(txResponse.raw_log || "[]");
+    } catch {
+      logs = [];
+    }
+
+    // Extract events from logs
+    const events: any[] = [];
+    if (Array.isArray(logs)) {
+      logs.forEach((log: any) => {
+        if (log.events && Array.isArray(log.events)) {
+          events.push(...log.events);
+        }
+      });
+    }
+
+    // Parse messages
+    const messages = txResponse.tx?.body?.messages || data.tx?.body?.messages || [];
+
+    // Parse fee
+    let fee: { amount: string; denom: string } | undefined;
+    if (txResponse.tx?.auth_info?.fee?.amount?.[0]) {
+      const feeAmount = txResponse.tx.auth_info.fee.amount[0];
+      fee = {
+        amount: formatTokenAmount(feeAmount.amount, 6),
+        denom: feeAmount.denom,
+      };
+    }
+
+    return {
+      hash: txResponse.txhash || txHash,
+      height: txResponse.height?.toString() || "0",
+      code: txResponse.code || 0,
+      codespace: txResponse.codespace,
+      gasUsed: txResponse.gas_used?.toString() || "0",
+      gasWanted: txResponse.gas_wanted?.toString() || "0",
+      timestamp: txResponse.timestamp || new Date().toISOString(),
+      rawLog: txResponse.raw_log || "",
+      logs,
+      events,
+      messages,
+      memo: txResponse.tx?.body?.memo || data.tx?.body?.memo,
+      fee,
+    };
+  } catch (error: any) {
+    console.error("Error fetching transaction:", error);
+    throw error;
+  }
+};
+
