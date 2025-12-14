@@ -1,7 +1,7 @@
 "use client";
 
 import { useWallet } from "@/contexts/WalletContext";
-import { Wallet, LogOut, Eye } from "lucide-react";
+import { Wallet, LogOut, BarChart3 } from "lucide-react";
 
 export default function Header() {
   const { address, isConnected, connect, disconnect, isLoading } = useWallet();
@@ -11,18 +11,18 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#374151] bg-[#0a0f1a]/90 backdrop-blur-xl shadow-lg">
+    <header className="sticky top-0 z-50 w-full border-b border-[#30363d] bg-[#0d1117]/90 backdrop-blur-xl shadow-lg">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-gradient-to-br from-teal-600 via-cyan-600 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg glow-primary border-2 border-teal-400/40">
-            <Eye className="text-white" size={20} />
+          <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg glow-primary border-2 border-emerald-400/40">
+            <BarChart3 className="text-white" size={20} />
           </div>
           <div className="hidden sm:block">
-            <h1 className="text-xl font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-raleway)' }}>
-              WalletWatch
+            <h1 className="text-xl font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-outfit)' }}>
+              P&L Tracker
             </h1>
             <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider">
-              Multi-Wallet Watchlist
+              Profit & Loss Analytics
             </p>
           </div>
         </div>
@@ -30,16 +30,16 @@ export default function Header() {
         <div className="flex items-center gap-3">
           {isConnected ? (
             <>
-              <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-teal-500/10 border-2 border-teal-400/40 rounded-xl backdrop-blur-md shadow-lg">
-                <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse shadow-sm glow-primary"></div>
-                <span className="text-sm font-mono text-teal-300 font-semibold" style={{ fontFamily: 'var(--font-fira-code)' }}>
+              <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border-2 border-emerald-400/40 rounded-xl backdrop-blur-md shadow-lg">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-sm glow-primary"></div>
+                <span className="text-sm font-mono text-emerald-300 font-semibold" style={{ fontFamily: 'var(--font-ibm-plex-mono)' }}>
                   {formatAddress(address!)}
                 </span>
               </div>
               <button
                 onClick={disconnect}
                 className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white rounded-xl transition-all duration-200 font-semibold text-sm shadow-lg shadow-red-500/30 hover:shadow-xl hover:shadow-red-500/40 hover:scale-[1.02] active:scale-[0.98]"
-                style={{ fontFamily: 'var(--font-raleway)' }}
+                style={{ fontFamily: 'var(--font-outfit)' }}
               >
                 <LogOut size={18} />
                 <span className="hidden sm:inline">Disconnect</span>
@@ -49,8 +49,8 @@ export default function Header() {
             <button
               onClick={connect}
               disabled={isLoading}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white rounded-xl transition-all duration-200 font-semibold text-sm shadow-lg glow-primary hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border-2 border-teal-400/40"
-              style={{ fontFamily: 'var(--font-raleway)' }}
+              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white rounded-xl transition-all duration-200 font-semibold text-sm shadow-lg glow-primary hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border-2 border-emerald-400/40"
+              style={{ fontFamily: 'var(--font-outfit)' }}
             >
               <Wallet size={18} />
               {isLoading ? "Connecting..." : "Connect Keplr"}

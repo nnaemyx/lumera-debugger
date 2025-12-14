@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Raleway, Nunito, Fira_Code } from "next/font/google";
+import { Raleway, Nunito, Fira_Code, Outfit, DM_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const raleway = Raleway({
-  variable: "--font-raleway",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-const firaCode = Fira_Code({
-  variable: "--font-fira-code",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${raleway.variable} ${nunito.variable} ${firaCode.variable} antialiased`}
+        className={`${outfit.variable} ${dmSans.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>
