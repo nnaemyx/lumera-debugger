@@ -2,98 +2,128 @@
 
 import { useWallet } from "@/contexts/WalletContext";
 import Header from "@/components/Header";
-import WhaleMonitor from "@/components/WhaleMonitor";
+import NodeMonitor from "@/components/NodeMonitor";
 import { motion } from "framer-motion";
-import { Radar, Target, Radio } from "lucide-react";
+import { Server, ShieldCheck, Globe, Cpu } from "lucide-react";
 
 export default function Home() {
   const { isConnected } = useWallet();
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex flex-col">
-      {/* Background Ambience (Sonar Mesh) */}
-      <div className="fixed inset-0 bg-[radial-gradient(#0ea5e9_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.05] pointer-events-none" />
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020617_100%)] pointer-events-none" />
+    <div className="min-h-screen relative overflow-hidden flex flex-col bg-[#0f172a]">
+      {/* Background Ambience (Circuit/Grid) */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(30,41,59,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(30,41,59,0.3)_1px,transparent_1px)] bg-[size:30px_30px] opacity-20 pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(16,185,129,0.1),transparent_60%)] pointer-events-none" />
 
       <Header />
 
-      <main className="container mx-auto px-4 py-12 relative z-10 flex-grow">
+      <main className="container mx-auto px-4 py-8 relative z-10 flex-grow">
 
-        {/* Radar Hero Section */}
-        <div className="text-center mb-12 relative">
-          {/* Animated Radar Effect */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/20 rounded-full animate-[spin_10s_linear_infinite] pointer-events-none opacity-20">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-primary/50 rounded-full blur-md" />
-          </div>
-
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-4xl md:text-6xl font-heading font-bold mb-4 tracking-tight"
-          >
-            <span className="text-white">WHALE</span>
-            <span className="text-primary glow-box inline-block mx-2 px-2 rounded">WATCH</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-slate-400 font-mono text-sm md:text-base max-w-xl mx-auto uppercase tracking-wider"
-          >
-            Monitoring high-value transfers on Lumera Testnet
-          </motion.p>
-        </div>
-
-        {/* Status Indicators */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12"
-        >
+        {/* Status Dashboard */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Mempool Status", value: "Active", icon: ActivityIcon, color: "text-emerald-400" },
-            { label: "Total Whales", value: "142", icon: Target, color: "text-primary" },
-            { label: "Alert Level", value: "Normal", icon: Radio, color: "text-cyan-400" },
+            { label: "Network Status", value: "Degraded", status: "warning", icon: Globe },
+            { label: "Active Validators", value: "84/100", status: "normal", icon: ShieldCheck },
+            { label: "Avg Block Time", value: "1.2s", status: "good", icon: ClockIcon },
+            { label: "TPS (Current)", value: "2,405", status: "good", icon: Cpu },
           ].map((stat, i) => (
-            <div key={i} className="glass-panel p-4 rounded-xl flex items-center justify-between">
+            <div key={i} className="glass-panel p-4 rounded-lg border-l-4 border-l-emerald-500/50 flex items-center justify-between">
               <div>
-                <p className="text-[10px] text-slate-500 font-mono uppercase tracking-widest mb-1">{stat.label}</p>
-                <p className="text-xl font-heading font-bold text-white tracking-wide">{stat.value}</p>
+                <p className="text-[10px] uppercase text-slate-500 font-bold tracking-wider mb-1">{stat.label}</p>
+                <p className="text-lg font-mono font-bold text-slate-200">{stat.value}</p>
               </div>
-              <stat.icon className={stat.color} size={20} />
+              <div className={`p-2 rounded-md ${stat.status === 'warning' ? 'bg-amber-500/10 text-amber-500' : 'bg-emerald-500/10 text-emerald-500'}`}>
+                <stat.icon size={18} />
+              </div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Main Monitor */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <WhaleMonitor />
-        </motion.div>
+        {/* Console / Monitor Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          {/* Main Node Monitor */}
+          <div className="lg:col-span-2 space-y-6">
+            <NodeMonitor />
+
+            {/* Logs / Console stub */}
+            <div className="glass-panel rounded-xl overflow-hidden border border-slate-800">
+              <div className="bg-slate-800/50 px-4 py-2 border-b border-slate-700 flex items-center justify-between">
+                <span className="text-xs font-mono text-slate-400">System Logs</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="text-[10px] text-emerald-500 uppercase font-bold">Live</span>
+                </span>
+              </div>
+              <div className="p-4 font-mono text-xs text-slate-400 h-32 overflow-y-auto space-y-1">
+                <p><span className="text-slate-600">[14:20:01]</span> Connected to mesh network.</p>
+                <p><span className="text-slate-600">[14:20:02]</span> Syncing block headers... <span className="text-emerald-500">Done (2ms)</span></p>
+                <p><span className="text-slate-600">[14:20:05]</span> Discovered 12 peers.</p>
+                <p><span className="text-slate-600">[14:20:12]</span> <span className="text-amber-500">WARN:</span> High latency on peer 192.168.1.105</p>
+                <p><span className="text-slate-600">[14:20:15]</span> Block #1254033 finalized.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar Stats */}
+          <div className="lg:col-span-1 space-y-4">
+            <div className="glass-panel p-5 rounded-xl border border-slate-800">
+              <h3 className="text-sm font-bold text-slate-300 mb-4 flex items-center gap-2">
+                <Server size={16} className="text-emerald-500" />
+                Infrastructure Health
+              </h3>
+
+              <div className="space-y-4">
+                <HealthBar label="API Gateway" percent={98} />
+                <HealthBar label="Indexer Service" percent={82} color="amber" />
+                <HealthBar label="Storage Cluster" percent={100} />
+                <HealthBar label="P2P Layer" percent={95} />
+              </div>
+            </div>
+
+            <div className="p-5 rounded-xl bg-emerald-900/10 border border-emerald-500/20 text-center">
+              <ShieldCheck size={32} className="mx-auto text-emerald-500 mb-2" />
+              <h4 className="text-emerald-400 font-bold text-sm">Secure Connection</h4>
+              <p className="text-xs text-emerald-500/60 mt-1">End-to-end encrypted telemetry</p>
+            </div>
+          </div>
+
+        </div>
 
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800 bg-[#020617] py-6 mt-auto">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-slate-600 text-xs font-mono">
-            System Status: <span className="text-emerald-500">OPERATIONAL</span> | v2.1.0-RC
-          </p>
+      <footer className="border-t border-slate-800 bg-[#0f172a] py-4 mt-auto">
+        <div className="container mx-auto px-6 flex justify-between items-center text-xs font-mono text-slate-600">
+          <p>Lumera Sentinel v3.0.1</p>
+          <p>Latency: 24ms</p>
         </div>
       </footer>
     </div>
   );
 }
 
-function ActivityIcon({ className, size }: { className?: string; size?: number }) {
+function ClockIcon({ className, size }: { className?: string; size?: number }) {
   return (
     <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
     </svg>
+  )
+}
+
+function HealthBar({ label, percent, color = "emerald" }: { label: string, percent: number, color?: "emerald" | "amber" | "red" }) {
+  const colorClass = color === "emerald" ? "bg-emerald-500" : color === "amber" ? "bg-amber-500" : "bg-red-500";
+
+  return (
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="text-slate-400">{label}</span>
+        <span className="text-slate-300 font-mono">{percent}%</span>
+      </div>
+      <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+        <div className={`h-full ${colorClass} rounded-full`} style={{ width: `${percent}%` }} />
+      </div>
+    </div>
   )
 }

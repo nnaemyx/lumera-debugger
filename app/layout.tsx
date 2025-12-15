@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Chakra_Petch, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const chakra = Chakra_Petch({
-  variable: "--font-chakra",
-  weight: ["300", "400", "500", "600", "700"],
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
@@ -22,10 +15,16 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Lumera WhaleWatch | Large Transaction Radar",
+  title: "Lumera Sentinel | Node Status",
   description:
-    "Real-time surveillance of large value transfers on the Lumera network.",
+    "Real-time RPC node status and latency monitor for the Lumera Network.",
 };
 
 export default function RootLayout({
@@ -36,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${chakra.variable} ${jetbrains.variable} antialiased`}
+        className={`${inter.variable} ${jetbrains.variable} ${robotoMono.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>

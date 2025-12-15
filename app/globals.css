@@ -1,96 +1,73 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020817;
-  --foreground: #e2e8f0;
+  --background: #0f172a;
+  --foreground: #f1f5f9;
 
-  /* Oceanic / Radar Theme */
-  --primary: #0ea5e9;
-  /* Ocean Blue */
-  --primary-glow: #38bdf8;
-  --accent: #2dd4bf;
-  /* Teal */
-  --alert: #f43f5e;
-  /* Red for alerts */
+  /* System Status Theme */
+  --primary: #10b981;
+  /* Emerald 500 */
+  --primary-dark: #059669;
+  --warning: #f59e0b;
+  /* Amber */
+  --error: #ef4444;
+  /* Red */
+  --neutral: #64748b;
+  /* Slate 500 */
 
-  /* Glass */
-  --glass-bg: rgba(2, 6, 23, 0.8);
-  --glass-border: rgba(14, 165, 233, 0.2);
+  --surface: #1e293b;
+  /* Slate 800 */
+  --surface-hover: #334155;
+  /* Slate 700 */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-space);
-  --font-heading: var(--font-chakra);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-mono);
 }
 
 body {
-  background: radial-gradient(circle at bottom center, #0f172a 0%, #020617 80%);
-  background-attachment: fixed;
+  background: #0f172a;
   color: var(--foreground);
-  font-family: var(--font-space), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   min-height: 100vh;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(14, 165, 233, 0.3);
-  border-radius: 2px;
+  background: #334155;
+  border-radius: 4px;
 }
 
-/* Sonar Animation */
-@keyframes sonar {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
 
-.animate-sonar {
-  animation: sonar 2s infinite ease-out;
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
-  }
-
-  50% {
-    box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
-  }
-}
-
-.glow-box {
-  animation: pulse-glow 3s infinite;
+.status-check {
+  background-image: radial-gradient(#1e293b 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 .glass-panel {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.6), rgba(2, 6, 23, 0.8));
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-}
-
-.text-gradient {
-  background: linear-gradient(to right, #38bdf8, #2dd4bf);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
