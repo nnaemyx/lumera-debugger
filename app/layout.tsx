@@ -1,33 +1,31 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Manrope, Montserrat, Open_Sans, Roboto_Mono, Courier_Prime } from "next/font/google";
+import { Orbitron, Inter, Rajdhani } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400"],
 });
 
-const openSans = Open_Sans({
-  variable: "--font-open-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
 });
 
-const courierPrime = Courier_Prime({
-  variable: "--font-courier-prime",
+const rajdhani = Rajdhani({
+  variable: "--font-rajdhani",
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "GasWatch - Gas Fee Monitor",
+  title: "Lumera Rank | Address Leaderboard",
   description:
-    "Real-time network statistics. View TPS, block time, gas averages, validator status, and more.",
+    "Top performing addresses on the Lumera network by transactions, gas, and volume.",
 };
 
 export default function RootLayout({
@@ -38,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} ${openSans.variable} ${courierPrime.variable} antialiased`}
+        className={`${orbitron.variable} ${inter.variable} ${rajdhani.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>
