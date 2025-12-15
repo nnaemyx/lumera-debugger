@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Inter, Fira_Code } from "next/font/google";
+import { Outfit, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const inter = Inter({
-  variable: "--font-sans",
+const outfit = Outfit({
+  variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
 });
 
-const firaCode = Fira_Code({
-  variable: "--font-mono",
+const dmSans = DM_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Lumera Inspector | Metadata Tool",
+  title: "Lumera Rank | Rarity Tools",
   description:
-    "Developer tool for analyzing and validating NFT metadata on Lumera Network.",
+    "Analyze and rank NFT traits for Lumera Network collections.",
 };
 
 export default function RootLayout({
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${firaCode.variable} antialiased`}
+        className={`${outfit.variable} ${dmSans.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>

@@ -1,83 +1,72 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0d1117;
-  --foreground: #c9d1d9;
+  --background: #0f0a1e;
+  /* Deep Violet */
+  --foreground: #e2e8f0;
 
-  /* IDE Theme (GitHub Dark Dimmed inspired) */
-  --primary: #58a6ff;
+  /* Cyber Analytics Theme */
+  --primary: #d946ef;
+  /* Fuchsia 500 */
+  --primary-hover: #c026d3;
+  --secondary: #06b6d4;
+  /* Cyan 500 */
+  --accent: #8b5cf6;
+  /* Violet 500 */
+
+  --surface: #1e1b2e;
+  --border: #3b3054;
+
+  --rank-legendary: #fbbf24;
+  /* Amber */
+  --rank-epic: #d946ef;
+  /* Fuchsia */
+  --rank-rare: #3b82f6;
   /* Blue */
-  --secondary: #238636;
-  /* Green */
-  --accent: #d2a8ff;
-  /* Purple */
-  --error: #f85149;
-  /* Red */
-
-  --surface: #161b22;
-  --border: #30363d;
-
-  --code-bg: #0d1117;
+  --rank-common: #94a3b8;
+  /* Slate */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   min-height: 100vh;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--background);
-  border-left: 1px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #30363d;
-  border-radius: 0;
-  border: 2px solid var(--background);
+  background: #3b3054;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #484f58;
+  background: #584b7a;
 }
 
-/* Syntax Highlighting Utilities */
-.syntax-key {
-  color: #7ee787;
+.card-gradient {
+  background: linear-gradient(145deg, rgba(30, 27, 46, 0.9) 0%, rgba(20, 18, 32, 0.95) 100%);
+  backdrop-filter: blur(10px);
 }
 
-.syntax-string {
-  color: #a5d6ff;
-}
-
-.syntax-number {
-  color: #79c0ff;
-}
-
-.syntax-boolean {
-  color: #ff7b72;
-}
-
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(48, 54, 61, 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(48, 54, 61, 0.2) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-input {
-  font-family: var(--font-mono);
+.text-gradient {
+  background: linear-gradient(to right, #d946ef, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
