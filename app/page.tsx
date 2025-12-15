@@ -2,60 +2,86 @@
 
 import { useWallet } from "@/contexts/WalletContext";
 import Header from "@/components/Header";
-import NFTGallery from "@/components/NFTGallery";
+import MetadataViewer from "@/components/MetadataViewer";
 import { motion } from "framer-motion";
+import { Terminal, Database, FileJson, Layers } from "lucide-react";
 
 export default function Home() {
   const { isConnected } = useWallet();
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex flex-col bg-[#111]">
-      {/* Background Ambience */}
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1f1f1f] via-[#111] to-[#000] pointer-events-none" />
+    <div className="min-h-screen relative overflow-hidden flex flex-col bg-[#0d1117] text-[#c9d1d9]">
+      {/* Background Ambience (Grid) */}
+      <div className="fixed inset-0 grid-bg pointer-events-none opacity-50" />
 
       <Header />
 
-      <main className="container mx-auto px-4 py-12 relative z-10 flex-grow">
+      <main className="container mx-auto px-4 py-8 relative z-10 flex-grow">
 
-        {/* Intro / Hero */}
-        <div className="text-center mb-16 space-y-4">
+        {/* Intro */}
+        <div className="mb-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            className="flex items-center gap-3 mb-4"
           >
-            <p className="text-[#d4af37] font-body text-xs uppercase tracking-[0.4em] mb-4">The Collection</p>
-            <h1 className="text-5xl md:text-7xl font-heading font-light text-white tracking-widest mb-6">
-              DIGITAL <span className="italic font-serif text-[#888]">ARTIFACTS</span>
-            </h1>
-            <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto" />
+            <div className="p-2 bg-[#1f2428] rounded border border-[#30363d]">
+              <Terminal size={24} className="text-[#58a6ff]" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold font-mono text-[#c9d1d9] tracking-tight">Metadata Inspector</h1>
+              <p className="text-xs text-[#8b949e] font-mono">Validate Token URIs and debug metadata structures.</p>
+            </div>
           </motion.div>
+
+          {/* Quick Stats / Info */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {[
+              { label: "Schema", value: "ERC-721", icon: Layers, color: "text-[#d2a8ff]" },
+              { label: "Validation", value: "Active", icon: CheckIcon, color: "text-[#238636]" },
+              { label: "IPFS Gateway", value: "Online", icon: Database, color: "text-[#58a6ff]" },
+              { label: "JSON Parser", value: "Ready", icon: FileJson, color: "text-[#79c0ff]" },
+            ].map((stat, i) => (
+              <div key={i} className="bg-[#161b22] border border-[#30363d] p-3 rounded-md flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] text-[#8b949e] font-mono uppercase mb-0.5">{stat.label}</p>
+                  <p className="text-sm font-bold text-[#c9d1d9] font-mono">{stat.value}</p>
+                </div>
+                <stat.icon size={16} className={stat.color} />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Gallery Section */}
+        {/* Main Tool */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
+          transition={{ delay: 0.1 }}
         >
-          {!isConnected ? (
-            <div className="flex flex-col items-center justify-center py-20 text-center space-y-6">
-              <div className="w-px h-24 bg-gradient-to-b from-transparent via-[#333] to-[#d4af37] mb-4" />
-              <p className="text-[#666] font-heading font-light text-xl">Connect wallet to view your collection</p>
-            </div>
-          ) : (
-            <NFTGallery />
-          )}
+          <MetadataViewer />
         </motion.div>
 
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#222] bg-[#0a0a0a] py-12 mt-auto">
-        <div className="container mx-auto px-6 text-center text-[#444] text-[10px] uppercase tracking-[0.2em] font-body">
-          <p>© 2024 Lumera Foundation. Curated by Cyber Jay.</p>
+      <footer className="border-t border-[#30363d] bg-[#0d1117] py-6 mt-auto">
+        <div className="container mx-auto px-6 flex justify-between items-center text-xs font-mono text-[#8b949e]">
+          <p>Lumera Inspector v1.0.0-beta</p>
+          <p className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#238636]"></span>
+            System Operational
+          </p>
         </div>
       </footer>
     </div>
   );
+}
+
+function CheckIcon({ className, size }: { className?: string; size?: number }) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  )
 }

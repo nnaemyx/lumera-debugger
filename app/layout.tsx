@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
-import { Cinzel, Lato } from "next/font/google";
+import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const cinzel = Cinzel({
-  variable: "--font-heading",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
-const lato = Lato({
-  variable: "--font-body",
-  weight: ["300", "400", "700"],
+const firaCode = Fira_Code({
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Lumera Gallery | NFT Viewer",
+  title: "Lumera Inspector | Metadata Tool",
   description:
-    "A curated exhibition of digital assets on the Lumera Network.",
+    "Developer tool for analyzing and validating NFT metadata on Lumera Network.",
 };
 
 export default function RootLayout({
@@ -30,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cinzel.variable} ${lato.variable} antialiased`}
+        className={`${inter.variable} ${firaCode.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>
