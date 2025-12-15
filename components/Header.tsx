@@ -1,7 +1,7 @@
 "use client";
 
 import { useWallet } from "@/contexts/WalletContext";
-import { Wallet, LogOut, ServerCrash, Activity } from "lucide-react";
+import { Wallet, LogOut, Sparkles } from "lucide-react";
 
 export default function Header() {
   const { address, isConnected, connect, disconnect, isLoading } = useWallet();
@@ -11,51 +11,45 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#0f172a]/90 backdrop-blur-md">
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-lg flex items-center justify-center shadow-lg border border-emerald-500/20">
-            <Activity className="text-white" size={20} />
+    <header className="sticky top-0 z-50 w-full border-b border-[#333] bg-[#111]/95 backdrop-blur-md">
+      <div className="container mx-auto px-6 py-5 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 border border-[#d4af37] rounded-sm flex items-center justify-center bg-[#1a1a1a]">
+            <Sparkles className="text-[#d4af37]" size={20} />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-white tracking-wide flex items-center gap-2">
-              LUMERA <span className="text-emerald-400">SENTINEL</span>
+            <h1 className="text-xl text-white font-heading tracking-[0.1em]">
+              LUMERA <span className="text-[#d4af37]">GALLERY</span>
             </h1>
-            <div className="flex items-center gap-1.5">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <p className="text-[10px] text-slate-400 font-mono font-medium tracking-wider uppercase">
-                System Online
-              </p>
-            </div>
+            <p className="text-[9px] text-[#888] font-body uppercase tracking-[0.3em]">
+              Curated Digital Assets
+            </p>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
           {isConnected ? (
             <>
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded text-xs font-mono text-slate-300">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+              <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-[#1a1a1a] border border-[#333] rounded-sm text-xs font-body tracking-wide text-[#ccc]">
+                <div className="w-1 h-1 bg-[#d4af37] rounded-full"></div>
                 {formatAddress(address!)}
               </div>
               <button
                 onClick={disconnect}
-                className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 rounded transition-all duration-200 font-medium text-xs font-mono"
+                className="flex items-center gap-2 px-4 py-2 bg-transparent text-[#888] hover:text-white transition-colors text-xs uppercase tracking-widest font-heading border border-transparent hover:border-[#333]"
               >
                 <LogOut size={14} />
-                <span className="hidden sm:inline">Disc.</span>
+                <span className="hidden sm:inline">Exit</span>
               </button>
             </>
           ) : (
             <button
               onClick={connect}
               disabled={isLoading}
-              className="flex items-center gap-2 px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded transition-all duration-200 font-medium text-xs font-mono shadow-lg shadow-emerald-900/20 disabled:opacity-50"
+              className="flex items-center gap-3 px-6 py-2.5 bg-[#d4af37] hover:bg-[#b8982f] text-black transition-all duration-300 font-bold text-xs font-heading tracking-widest uppercase rounded-sm disabled:opacity-50"
             >
               <Wallet size={16} />
-              {isLoading ? "Connecting..." : "Connect Node"}
+              {isLoading ? "Connecting..." : "Connect Wallet"}
             </button>
           )}
         </div>
