@@ -1,31 +1,31 @@
 import type { Metadata } from "next";
-import { Orbitron, Inter, Rajdhani } from "next/font/google";
+import { Space_Grotesk, Chakra_Petch, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const rajdhani = Rajdhani({
-  variable: "--font-rajdhani",
+const chakra = Chakra_Petch({
+  variable: "--font-chakra",
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
+const jetbrains = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Lumera Rank | Address Leaderboard",
+  title: "Lumera WhaleWatch | Large Transaction Radar",
   description:
-    "Top performing addresses on the Lumera network by transactions, gas, and volume.",
+    "Real-time surveillance of large value transfers on the Lumera network.",
 };
 
 export default function RootLayout({
@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${orbitron.variable} ${inter.variable} ${rajdhani.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${chakra.variable} ${jetbrains.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>

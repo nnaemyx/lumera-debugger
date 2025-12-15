@@ -1,7 +1,7 @@
 "use client";
 
 import { useWallet } from "@/contexts/WalletContext";
-import { Wallet, LogOut, Trophy } from "lucide-react";
+import { Wallet, LogOut, Radar } from "lucide-react";
 
 export default function Header() {
   const { address, isConnected, connect, disconnect, isLoading } = useWallet();
@@ -11,18 +11,21 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#050508]/80 backdrop-blur-xl shadow-lg">
+    <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#020617]/80 backdrop-blur-md">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20 border border-indigo-400/30">
-            <Trophy className="text-white" size={24} />
+          <div className="w-10 h-10 relative">
+            <div className="absolute inset-0 bg-primary/20 rounded-full animate-sonar"></div>
+            <div className="relative z-10 w-full h-full bg-gradient-to-br from-cyan-600 to-blue-700 rounded-lg flex items-center justify-center border border-cyan-400/30">
+              <Radar className="text-white" size={20} />
+            </div>
           </div>
           <div>
-            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 font-heading tracking-wide">
-              LUMERA<span className="text-indigo-400">RANK</span>
+            <h1 className="text-xl font-bold text-white font-heading tracking-wider">
+              WHALE<span className="text-primary">WATCH</span>
             </h1>
-            <p className="text-xs text-indigo-300 font-medium tracking-[0.2em] uppercase">
-              Official Leaderboard
+            <p className="text-[10px] text-cyan-300 font-mono tracking-widest uppercase opacity-70">
+              Lumera Network
             </p>
           </div>
         </div>
@@ -30,17 +33,17 @@ export default function Header() {
         <div className="flex items-center gap-3">
           {isConnected ? (
             <>
-              <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl backdrop-blur-md">
-                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.5)]"></div>
-                <span className="text-sm font-mono text-gray-300">
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-slate-900/50 border border-slate-700 rounded-lg backdrop-blur-sm">
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.5)]"></div>
+                <span className="text-xs font-mono text-slate-300">
                   {formatAddress(address!)}
                 </span>
               </div>
               <button
                 onClick={disconnect}
-                className="flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all duration-200 font-medium text-sm"
+                className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 rounded-lg transition-all duration-200 font-medium text-xs font-mono"
               >
-                <LogOut size={18} />
+                <LogOut size={14} />
                 <span className="hidden sm:inline">Disconnect</span>
               </button>
             </>
@@ -48,10 +51,10 @@ export default function Header() {
             <button
               onClick={connect}
               disabled={isLoading}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white rounded-xl transition-all duration-200 font-medium text-sm shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+              className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-lg transition-all duration-200 font-medium text-xs font-mono shadow-lg shadow-cyan-900/20 disabled:opacity-50"
             >
-              <Wallet size={18} />
-              {isLoading ? "Connecting..." : "Connect Calculator"}
+              <Wallet size={16} />
+              {isLoading ? "Connecting..." : "Connect Radar"}
             </button>
           )}
         </div>

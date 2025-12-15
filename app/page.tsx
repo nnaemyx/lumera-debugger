@@ -2,95 +2,98 @@
 
 import { useWallet } from "@/contexts/WalletContext";
 import Header from "@/components/Header";
-import Leaderboard from "@/components/Leaderboard";
+import WhaleMonitor from "@/components/WhaleMonitor";
 import { motion } from "framer-motion";
-import { Zap, Crown, Award, TrendingUp } from "lucide-react";
+import { Radar, Target, Radio } from "lucide-react";
 
 export default function Home() {
   const { isConnected } = useWallet();
 
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col">
-      {/* Background Ambience */}
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-[#050508] to-[#050508] pointer-events-none" />
-      <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20 pointer-events-none" />
+      {/* Background Ambience (Sonar Mesh) */}
+      <div className="fixed inset-0 bg-[radial-gradient(#0ea5e9_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.05] pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020617_100%)] pointer-events-none" />
 
       <Header />
 
       <main className="container mx-auto px-4 py-12 relative z-10 flex-grow">
 
-        {/* Hero Section */}
-        <div className="text-center mb-16 relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-indigo-500/20 blur-[120px] rounded-full pointer-events-none"
-          />
+        {/* Radar Hero Section */}
+        <div className="text-center mb-12 relative">
+          {/* Animated Radar Effect */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/20 rounded-full animate-[spin_10s_linear_infinite] pointer-events-none opacity-20">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-primary/50 rounded-full blur-md" />
+          </div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-heading font-bold mb-6 tracking-tight"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-4xl md:text-6xl font-heading font-bold mb-4 tracking-tight"
           >
-            <span className="text-white">Lumera</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400"> Rankings</span>
+            <span className="text-white">WHALE</span>
+            <span className="text-primary glow-box inline-block mx-2 px-2 rounded">WATCH</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-400 font-mono text-sm md:text-base max-w-xl mx-auto uppercase tracking-wider"
           >
-            Discover the top performing addresses on the Lumera network.
-            Track real-time statistics for transactions, gas usage, and token volume.
+            Monitoring high-value transfers on Lumera Testnet
           </motion.p>
         </div>
 
-        {/* Stats Overview (Optional visual flair) */}
-        {!isConnected && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16"
-          >
-            {[
-              { label: "Active Addresses", value: "125,402", icon: Crown, color: "text-yellow-400" },
-              { label: "24h Transactions", value: "2.4M+", icon: Zap, color: "text-indigo-400" },
-              { label: "Total Volume", value: "$450M", icon: TrendingUp, color: "text-emerald-400" },
-            ].map((stat, i) => (
-              <div key={i} className="glass-panel p-6 rounded-2xl flex items-center justify-between group hover:border-indigo-500/30 transition-colors">
-                <div>
-                  <p className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-1">{stat.label}</p>
-                  <p className="text-3xl font-mono font-bold text-white">{stat.value}</p>
-                </div>
-                <div className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center ${stat.color} group-hover:scale-110 transition-transform`}>
-                  <stat.icon size={24} />
-                </div>
+        {/* Status Indicators */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12"
+        >
+          {[
+            { label: "Mempool Status", value: "Active", icon: ActivityIcon, color: "text-emerald-400" },
+            { label: "Total Whales", value: "142", icon: Target, color: "text-primary" },
+            { label: "Alert Level", value: "Normal", icon: Radio, color: "text-cyan-400" },
+          ].map((stat, i) => (
+            <div key={i} className="glass-panel p-4 rounded-xl flex items-center justify-between">
+              <div>
+                <p className="text-[10px] text-slate-500 font-mono uppercase tracking-widest mb-1">{stat.label}</p>
+                <p className="text-xl font-heading font-bold text-white tracking-wide">{stat.value}</p>
               </div>
-            ))}
-          </motion.div>
-        )}
+              <stat.icon className={stat.color} size={20} />
+            </div>
+          ))}
+        </motion.div>
 
-        {/* Main Leaderboard */}
+        {/* Main Monitor */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.4 }}
         >
-          <Leaderboard />
+          <WhaleMonitor />
         </motion.div>
 
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 bg-[#050508] py-8 mt-auto">
-        <div className="container mx-auto px-6 text-center text-gray-600 text-sm">
-          <p>© 2024 Lumera Foundation. All rights reserved.</p>
+      <footer className="border-t border-slate-800 bg-[#020617] py-6 mt-auto">
+        <div className="container mx-auto px-6 text-center">
+          <p className="text-slate-600 text-xs font-mono">
+            System Status: <span className="text-emerald-500">OPERATIONAL</span> | v2.1.0-RC
+          </p>
         </div>
       </footer>
     </div>
   );
+}
+
+function ActivityIcon({ className, size }: { className?: string; size?: number }) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+    </svg>
+  )
 }
