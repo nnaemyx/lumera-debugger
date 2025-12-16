@@ -1,72 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f0a1e;
-  /* Deep Violet */
-  --foreground: #e2e8f0;
+  --background: #09090b;
+  /* Almost Black */
+  --foreground: #fafafa;
 
-  /* Cyber Analytics Theme */
-  --primary: #d946ef;
-  /* Fuchsia 500 */
-  --primary-hover: #c026d3;
-  --secondary: #06b6d4;
-  /* Cyan 500 */
-  --accent: #8b5cf6;
-  /* Violet 500 */
+  /* Obsidian Data Theme */
+  --primary: #14b8a6;
+  /* Teal 500 */
+  --primary-hover: #0d9488;
+  --secondary: #6366f1;
+  /* Indigo 500 */
+  --accent: #f43f5e;
+  /* Rose 500 */
 
-  --surface: #1e1b2e;
-  --border: #3b3054;
-
-  --rank-legendary: #fbbf24;
-  /* Amber */
-  --rank-epic: #d946ef;
-  /* Fuchsia */
-  --rank-rare: #3b82f6;
-  /* Blue */
-  --rank-common: #94a3b8;
-  /* Slate */
+  --surface: #18181b;
+  /* Zinc 900 */
+  --surface-highlight: #27272a;
+  /* Zinc 800 */
+  --border: #3f3f46;
+  /* Zinc 700 */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-heading: var(--font-heading);
-  --font-body: var(--font-body);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   min-height: 100vh;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3b3054;
-  border-radius: 4px;
+  background: #3f3f46;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #584b7a;
+  background: #52525b;
 }
 
-.card-gradient {
-  background: linear-gradient(145deg, rgba(30, 27, 46, 0.9) 0%, rgba(20, 18, 32, 0.95) 100%);
-  backdrop-filter: blur(10px);
+.glass-panel {
+  background: rgba(24, 24, 27, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.text-gradient {
-  background: linear-gradient(to right, #d946ef, #06b6d4);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.chart-bar {
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
