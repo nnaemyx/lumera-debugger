@@ -2,38 +2,43 @@
 
 import { useWallet } from "@/contexts/WalletContext";
 import Header from "@/components/Header";
-import TransactionBuilder from "@/components/TransactionBuilder";
+import HexDecoder from "@/components/HexDecoder";
 import { motion } from "framer-motion";
 
 export default function Home() {
   const { isConnected } = useWallet();
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex flex-col bg-[#000000] text-stone-300">
+    <div className="min-h-screen relative overflow-hidden flex flex-col bg-black text-green-500">
 
+      <div className="scanline"></div>
       <Header />
 
-      <main className="container mx-auto px-4 py-8 relative z-10 flex-grow">
+      <main className="container mx-auto px-4 py-12 relative z-10 flex-grow">
 
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex gap-2">
-            <span className="text-[10px] text-stone-600 font-mono">[SYSTEM_STATUS: ONLINE]</span>
-            <span className="text-[10px] text-green-600 font-mono">[NODE: CONNECTED]</span>
-          </div>
+        <div className="text-center mb-10">
+          <h2 className="text-2xl font-heading tracking-widest text-green-600 mb-2">
+            &lt; DECODE_MODULE /&gt;
+          </h2>
+          <p className="text-xs font-mono text-green-900">
+            Interpret raw bytecode and hex data streams.
+          </p>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
         >
-          <TransactionBuilder />
+          <HexDecoder />
         </motion.div>
 
       </main>
 
-      <footer className="border-t border-stone-900 bg-[#000000] py-4 mt-auto">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-[10px] text-stone-700 font-mono">LUMERA_SYSTEMS // TERMINAL_ACCESS_GRANTED</p>
+      <footer className="border-t border-green-900 bg-black py-6 mt-auto">
+        <div className="container mx-auto px-6 text-center select-none">
+          <p className="text-[10px] text-green-900 font-mono tracking-widest">
+            ENCRYPTED CONNECTION ESTABLISHED // LUMERA_SECURE
+          </p>
         </div>
       </footer>
     </div>

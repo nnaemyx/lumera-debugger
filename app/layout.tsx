@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
-import { Share_Tech_Mono, Roboto_Mono } from "next/font/google";
+import { Space_Mono, Fira_Code } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const shareTech = Share_Tech_Mono({
+const spaceMono = Space_Mono({
   variable: "--font-heading",
-  weight: "400",
+  weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const robotoMono = Roboto_Mono({
-  variable: "--font-body",
+const firaCode = Fira_Code({
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Lumera TxForge | Transaction Builder",
+  title: "Lumera HexVault | Decoder",
   description:
-    "Construct and preview raw Ethereum/Lumera transactions.",
+    "Real-time hex string decoding and analysis tool.",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${shareTech.variable} ${robotoMono.variable} antialiased`}
+        className={`${spaceMono.variable} ${firaCode.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>

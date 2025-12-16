@@ -1,5 +1,5 @@
 {
-  "name": "lumera-tx-builder",
+  "name": "lumera-hex-decoder",
   "version": "0.1.0",
   "private": true,
   "scripts": {
