@@ -1,7 +1,7 @@
 "use client";
 
 import { useWallet } from "@/contexts/WalletContext";
-import { Wallet, LogOut, Cuboid, Box } from "lucide-react";
+import { Wallet, LogOut, Calculator, Coins } from "lucide-react";
 
 export default function Header() {
   const { address, isConnected, connect, disconnect, isLoading } = useWallet();
@@ -11,18 +11,18 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#0f172a]/95 backdrop-blur border-b border-slate-800">
+    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-200">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="text-primary bg-primary/10 p-2 rounded-lg">
-            <Cuboid size={24} />
+          <div className="text-indigo-600 bg-indigo-50 p-2 rounded-lg">
+            <Calculator size={20} />
           </div>
           <div>
-            <h1 className="text-xl font-bold font-heading text-slate-100 items-center gap-2">
-              LUMERA <span className="text-primary">BLOCK_LAB</span>
+            <h1 className="text-lg font-bold text-gray-900 flex items-center gap-2 tracking-tight">
+              Lumera UnitCalc
             </h1>
-            <p className="text-[10px] text-slate-500 font-mono tracking-wider">
-              CONSENSUS SIMULATOR v1.0
+            <p className="text-xs text-gray-500 font-medium">
+              Web3 Token Converter
             </p>
           </div>
         </div>
@@ -30,26 +30,26 @@ export default function Header() {
         <div className="flex items-center gap-3">
           {isConnected ? (
             <>
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 text-xs font-mono text-blue-400 rounded-md">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-gray-100 border border-gray-200 rounded-full text-xs font-mono text-gray-600">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                 {formatAddress(address!)}
               </div>
               <button
                 onClick={disconnect}
-                className="flex items-center gap-2 px-3 py-1.5 hover:bg-slate-800 text-slate-500 hover:text-slate-300 border border-transparent hover:border-slate-700 transition-colors text-xs font-bold rounded-md"
+                className="flex items-center gap-2 px-3 py-1.5 hover:bg-gray-100 text-gray-500 hover:text-gray-700 rounded-lg transition-colors text-xs font-medium"
               >
                 <LogOut size={14} />
-                <span className="hidden sm:inline">EXIT LAB</span>
+                <span className="hidden sm:inline">Sign Out</span>
               </button>
             </>
           ) : (
             <button
               onClick={connect}
               disabled={isLoading}
-              className="flex items-center gap-2 px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-md shadow-lg shadow-blue-500/20 transition-all font-bold text-xs font-mono disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow-sm transition-all font-medium text-xs disabled:opacity-50"
             >
               <Wallet size={14} />
-              {isLoading ? "INIT..." : "CONNECT WALLET"}
+              {isLoading ? "Connecting..." : "Connect Wallet"}
             </button>
           )}
         </div>

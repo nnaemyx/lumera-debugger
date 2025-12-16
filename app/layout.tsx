@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
-import { Work_Sans, Source_Code_Pro } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const workSans = Work_Sans({
-  variable: "--font-heading",
-  weight: ["400", "600", "700"],
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
-const sourceCodePro = Source_Code_Pro({
+const robotoMono = Roboto_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Lumera BlockLab | Simulator",
+  title: "Lumera UnitCalc | Converter",
   description:
-    "Interactive Block Hashing and Mining Simulator.",
+    "Real-time token unit conversion tool.",
 };
 
 export default function RootLayout({
@@ -30,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${workSans.variable} ${sourceCodePro.variable} antialiased`}
+        className={`${inter.variable} ${robotoMono.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>
