@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import { Share_Tech_Mono, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const ibmPlex = IBM_Plex_Sans({
-  variable: "--font-sans",
-  weight: ["300", "400", "500", "600"],
+const shareTech = Share_Tech_Mono({
+  variable: "--font-heading",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+const robotoMono = Roboto_Mono({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Lumera DocGen | ABI Decoder",
+  title: "Lumera TxForge | Transaction Builder",
   description:
-    "Instant documentation generator for Smart Contract ABIs.",
+    "Construct and preview raw Ethereum/Lumera transactions.",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${ibmPlex.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${shareTech.variable} ${robotoMono.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>

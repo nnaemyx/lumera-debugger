@@ -1,7 +1,7 @@
 "use client";
 
 import { useWallet } from "@/contexts/WalletContext";
-import { Wallet, LogOut, FileCode, BookOpen } from "lucide-react";
+import { Wallet, LogOut, Hammer } from "lucide-react";
 
 export default function Header() {
   const { address, isConnected, connect, disconnect, isLoading } = useWallet();
@@ -11,18 +11,18 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white shadow-sm">
-      <div className="container mx-auto px-6 py-3 flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b border-stone-800 bg-[#000000]/90 backdrop-blur-sm">
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="bg-indigo-600 p-1.5 rounded-md text-white">
-            <FileCode size={20} />
+          <div className="text-amber-500">
+            <Hammer size={24} />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-slate-900 flex items-center gap-2 tracking-tight leading-none">
-              Lumera DocGen
+            <h1 className="text-xl font-bold font-heading text-amber-500 tracking-wider flex items-center gap-2">
+              LUMERA_TxFORGE
             </h1>
-            <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wide">
-              Smart Contract Documentation
+            <p className="text-[10px] text-stone-500 font-mono tracking-widest">
+              v2.0.4 :: RAW_TX_BUILDER
             </p>
           </div>
         </div>
@@ -30,26 +30,26 @@ export default function Header() {
         <div className="flex items-center gap-3">
           {isConnected ? (
             <>
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded text-xs font-mono text-slate-600">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#1c1917] border border-stone-800 text-xs font-mono text-stone-400">
+                <div className="w-2 h-2 bg-green-500 rounded-sm animate-pulse"></div>
                 {formatAddress(address!)}
               </div>
               <button
                 onClick={disconnect}
-                className="flex items-center gap-2 px-3 py-1.5 hover:bg-slate-100 text-slate-600 rounded transition-colors text-xs font-medium"
+                className="flex items-center gap-2 px-3 py-1.5 hover:bg-[#1c1917] text-stone-500 hover:text-amber-500 border border-transparent hover:border-stone-700 transition-colors text-xs font-mono"
               >
                 <LogOut size={14} />
-                <span className="hidden sm:inline">Sign Out</span>
+                <span className="hidden sm:inline">LOGOUT</span>
               </button>
             </>
           ) : (
             <button
               onClick={connect}
               disabled={isLoading}
-              className="flex items-center gap-2 px-4 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded shadow-sm transition-all font-medium text-xs disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-black border border-amber-600 transition-all font-bold text-xs font-mono disabled:opacity-50"
             >
               <Wallet size={14} />
-              {isLoading ? "..." : "Connect"}
+              {isLoading ? "INIT..." : "CONNECT_WALLET"}
             </button>
           )}
         </div>
