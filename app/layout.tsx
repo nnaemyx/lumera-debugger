@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
-import { Manrope, Space_Mono } from "next/font/google";
+import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const manrope = Manrope({
+const ibmPlex = IBM_Plex_Sans({
   variable: "--font-sans",
+  weight: ["300", "400", "500", "600"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const spaceMono = Space_Mono({
+const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
-  weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Lumera Dashboard | Collection Analytics",
+  title: "Lumera DocGen | ABI Decoder",
   description:
-    "Comprehensive trait analysis and visualization for Lumera Network collections.",
+    "Instant documentation generator for Smart Contract ABIs.",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} ${spaceMono.variable} antialiased`}
+        className={`${ibmPlex.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>
