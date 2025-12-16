@@ -2,42 +2,42 @@
 
 import { useWallet } from "@/contexts/WalletContext";
 import Header from "@/components/Header";
-import HexDecoder from "@/components/HexDecoder";
+import BlockSimulator from "@/components/BlockSimulator";
 import { motion } from "framer-motion";
 
 export default function Home() {
   const { isConnected } = useWallet();
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex flex-col bg-black text-green-500">
+    <div className="min-h-screen flex flex-col">
 
-      <div className="scanline"></div>
       <Header />
 
-      <main className="container mx-auto px-4 py-12 relative z-10 flex-grow">
+      <main className="container mx-auto px-4 py-12 flex-grow">
 
-        <div className="text-center mb-10">
-          <h2 className="text-2xl font-heading tracking-widest text-green-600 mb-2">
-            &lt; DECODE_MODULE /&gt;
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-heading font-bold text-slate-100 mb-4">
+            Blockchain Internals Training
           </h2>
-          <p className="text-xs font-mono text-green-900">
-            Interpret raw bytecode and hex data streams.
+          <p className="text-sm font-mono text-slate-400 max-w-2xl mx-auto">
+            Experiment with the fundamental mechanics of block hashing. Change the data, observe the hash break, and mine a new nonce to restore chain validity.
           </p>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
         >
-          <HexDecoder />
+          <BlockSimulator />
         </motion.div>
 
       </main>
 
-      <footer className="border-t border-green-900 bg-black py-6 mt-auto">
-        <div className="container mx-auto px-6 text-center select-none">
-          <p className="text-[10px] text-green-900 font-mono tracking-widest">
-            ENCRYPTED CONNECTION ESTABLISHED // LUMERA_SECURE
+      <footer className="border-t border-slate-800 py-8 mt-auto bg-slate-900">
+        <div className="container mx-auto px-6 text-center">
+          <p className="text-xs text-slate-600 font-mono">
+            LUMERA EDUCATION INITIATIVE // OPEN SOURCE
           </p>
         </div>
       </footer>

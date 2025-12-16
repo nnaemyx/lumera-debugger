@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
-import { Space_Mono, Fira_Code } from "next/font/google";
+import { Work_Sans, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/contexts/WalletContext";
 
-const spaceMono = Space_Mono({
+const workSans = Work_Sans({
   variable: "--font-heading",
-  weight: ["400", "700"],
+  weight: ["400", "600", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const firaCode = Fira_Code({
+const sourceCodePro = Source_Code_Pro({
   variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Lumera HexVault | Decoder",
+  title: "Lumera BlockLab | Simulator",
   description:
-    "Real-time hex string decoding and analysis tool.",
+    "Interactive Block Hashing and Mining Simulator.",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceMono.variable} ${firaCode.variable} antialiased`}
+        className={`${workSans.variable} ${sourceCodePro.variable} antialiased`}
       >
         <WalletProvider>{children}</WalletProvider>
       </body>
