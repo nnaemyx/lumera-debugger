@@ -710,6 +710,7 @@ export const getLatestBlockHeight = async (): Promise<number> => {
 export interface TransactionDetails {
   hash: string;
   height: string;
+  type: string;
   code: number;
   codespace?: string;
   gasUsed: string;
@@ -775,9 +776,13 @@ export const getTransactionByHash = async (txHash: string): Promise<TransactionD
       };
     }
 
+    // Determine type from first message
+    const msgType = messages.length > 0 ? (messages[0]["@type"] || messages[0].type || "Unknown") : "Unknown";
+
     return {
       hash: txResponse.txhash || txHash,
       height: txResponse.height?.toString() || "0",
+      type: msgType,
       code: txResponse.code || 0,
       codespace: txResponse.codespace,
       gasUsed: txResponse.gas_used?.toString() || "0",
