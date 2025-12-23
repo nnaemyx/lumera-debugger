@@ -6,26 +6,22 @@
   --foreground: #e2e8f0;
   /* Slate 200 */
 
-  /* Cyber Theme */
-  --primary: #10b981;
-  /* Emerald 500 */
-  --primary-hover: #059669;
-  --secondary: #3b82f6;
-  /* Blue 500 */
-  --accent: #f59e0b;
+  /* Diagnostic Theme */
+  --primary: #f59e0b;
   /* Amber 500 */
+  --primary-hover: #d97706;
+  --secondary: #ef4444;
+  /* Red 500 */
+  --accent: #eab308;
+  /* Yellow 500 */
 
-  --surface: #1e293b;
-  /* Slate 800 */
-  --surface-highlight: #334155;
-  /* Slate 700 */
+  --surface: #1e1e1e;
+  /* Dark Gray */
+  --surface-highlight: #2d2d2d;
 
-  --border: #334155;
-  /* Slate 700 */
-  --input-border: #475569;
-  /* Slate 600 */
-  --input-bg: #0f172a;
-  /* Slate 900 */
+  --border: #404040;
+  --input-border: #525252;
+  --input-bg: #0a0a0a;
 
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;

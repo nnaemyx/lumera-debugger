@@ -1109,3 +1109,67 @@ export const getGasFeeStats = async (): Promise<GasFeeStats> => {
   }
 };
 
+export interface FailureAnalysis {
+  reason: string;
+  recommendation: string;
+  technicalError: string;
+  severity: "low" | "medium" | "high";
+}
+
+export const analyzeTxFailure = (tx: TransactionDetails): FailureAnalysis | null => {
+  if (tx.code === 0) return null; // Success
+
+  // Common Cosmos SDK Error Codes
+  const rawLog = (tx.rawLog || "").toLowerCase();
+
+  // 1. Out of Gas
+  if (tx.code === 11 || rawLog.includes("out of gas")) {
+    const gasUsed = parseInt(tx.gasUsed || "0");
+    const gasWanted = parseInt(tx.gasWanted || "0");
+    return {
+      reason: "Out of Gas",
+      recommendation: `You provided ${gasWanted} gas, but the transaction required ${gasUsed} (or more). Increase gas limit by ~20%.`,
+      technicalError: `Code 11: Out of Gas. Used: ${gasUsed}, Wanted: ${gasWanted}`,
+      severity: "medium"
+    };
+  }
+
+  // 2. Incorrect Nonce (Sequence)
+  if (tx.code === 32 || rawLog.includes("account sequence mismatch")) {
+    return {
+      reason: "Incorrect Nonce",
+      recommendation: "Your wallet is out of sync. Reset your wallet or clear queued transactions.",
+      technicalError: "Code 32: Account sequence mismatch",
+      severity: "high"
+    };
+  }
+
+  // 3. Insufficient Funds
+  if (tx.code === 5 || rawLog.includes("insufficient funds")) {
+    return {
+      reason: "Insufficient Funds",
+      recommendation: "You do not have enough tokens to pay for the transaction fees.",
+      technicalError: "Code 5: Insufficient funds",
+      severity: "low"
+    };
+  }
+
+  // 4. Unauthorized / Signature Verification
+  if (tx.code === 4 || rawLog.includes("unauthorized") || rawLog.includes("signature verification failed")) {
+    return {
+      reason: "Signature Verification Failed",
+      recommendation: "The transaction was signed with the wrong key or the signature is invalid.",
+      technicalError: "Code 4: Unauthorized",
+      severity: "high"
+    };
+  }
+
+  // Default Fallback
+  return {
+    reason: "Unknown Error",
+    recommendation: "Check the raw error log for more details.",
+    technicalError: `Code ${tx.code}: ${tx.rawLog}`,
+    severity: "medium"
+  };
+};
+

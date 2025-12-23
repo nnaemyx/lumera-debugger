@@ -16,9 +16,9 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Block Propagation Visualizer",
+  title: "Lumera TxDebugger",
   description:
-    "Real-time visualization of block propagation across the Lumera network.",
+    "Analyze and debug failed transactions on the Lumera Network.",
 };
 
 export default function RootLayout({
