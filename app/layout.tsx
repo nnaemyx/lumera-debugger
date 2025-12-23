@@ -16,9 +16,9 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lumera UnitCalc | Converter",
+  title: "Lumera Mempool",
   description:
-    "Real-time token unit conversion tool.",
+    "Real-time mempool monitoring tool.",
 };
 
 export default function RootLayout({
