@@ -16,9 +16,9 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lumera Mempool",
+  title: "Block Propagation Visualizer",
   description:
-    "Real-time mempool monitoring tool.",
+    "Real-time visualization of block propagation across the Lumera network.",
 };
 
 export default function RootLayout({

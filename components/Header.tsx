@@ -18,12 +18,17 @@ export default function Header() {
             <Activity size={20} />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-gray-100 flex items-center gap-2 tracking-tight font-mono">
-              LUMERA<span className="text-emerald-500">MEMPOOL</span>
+            <h1 className="text-xl font-bold tracking-tighter text-white flex items-center gap-2 font-mono">
+              <span className="text-emerald-400">LUMERA</span>
+              <span className="text-slate-400">NETWORK</span>
             </h1>
-            <p className="text-[10px] text-gray-400 font-mono tracking-wider uppercase">
-              Live Network Observer
-            </p>
+            <div className="hidden md:flex items-center space-x-1 text-[10px] font-mono uppercase tracking-widest text-emerald-500/80 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20">
+              <span className="relative flex h-2 w-2 mr-1">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              PROPAGATION VISUALIZER
+            </div>
           </div>
         </div>
 

@@ -2,14 +2,14 @@
 
 import { useWallet } from "@/contexts/WalletContext";
 import Header from "@/components/Header";
-import MempoolFeed from "@/components/MempoolFeed";
+import BlockPropagationVisualizer from "@/components/BlockPropagationVisualizer";
 import { motion } from "framer-motion";
 
 export default function Home() {
   const { isConnected } = useWallet();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0f172a] text-gray-200 font-sans selection:bg-emerald-500/30">
+    <div className="min-h-screen flex flex-col bg-[#050a10] text-gray-200 font-sans selection:bg-emerald-500/30">
 
       <Header />
 
@@ -22,21 +22,21 @@ export default function Home() {
         >
           <div className="text-center mb-10 pt-8">
             <div className="inline-block px-3 py-1 mb-4 text-[10px] font-mono font-medium text-emerald-400 bg-emerald-950/30 border border-emerald-500/20 rounded-full tracking-widest uppercase">
-              System Status: Operational
+              Network Status: Healthy
             </div>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-4 font-mono">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">
-                REAL-TIME
-              </span> MEMPOOL
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
+                BLOCK PROPAGATION
+              </span>
             </h2>
             <p className="text-sm text-gray-500 max-w-lg mx-auto font-mono">
-              Monitoring unconfirmed transactions on Lumera Testnet.
+              Visualizing real-time block gossip across the global Lumera overlay network.
               <br />
-              <span className="opacity-50">Validating consensus integrity.</span>
+              <span className="opacity-50">Monitoring latency and peer connectivity.</span>
             </p>
           </div>
 
-          <MempoolFeed />
+          <BlockPropagationVisualizer />
         </motion.div>
 
       </main>
